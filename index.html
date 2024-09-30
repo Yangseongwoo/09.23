@@ -16,11 +16,11 @@
     <div class="btns">
         <div class="container">
             <div class="btns__menu">
-                <button class="btn home">Home</button>
-                <button class="btn about">About</button>
-                <button class="btn skills">Skills</button>
-                <button class="btn works">Works</button>
-                <button class="btn contact">Contact</button>
+                <button class="btn home" data-link="#home">Home</button>
+                <button class="btn about" data-link="#about">About</button>
+                <button class="btn skills" data-link="#skills">Skills</button>
+                <button class="btn works" data-link="#works">Works</button>
+                <button class="btn contact" data-link="#contact">Contact</button>
             </div>
         </div>
     </div>
@@ -69,49 +69,49 @@
                 <a href="#" class="project" target="_blank" data-type="visual">
                     <img src="images/stu02.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu02 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
                 <a href="#" class="project" target="_blank" data-type="visual">
                     <img src="images/stu03.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu03 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
                 <a href="#" class="project" target="_blank" data-type="web">
                     <img src="images/stu04.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu04 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
                 <a href="#" class="project" target="_blank" data-type="web">
                     <img src="images/stu05.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu05 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
                 <a href="#" class="project" target="_blank" data-type="web">
                     <img src="images/stu06.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu06 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
                 <a href="#" class="project" target="_blank" data-type="motion">
                     <img src="images/stu07.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu07 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
                 <a href="#" class="project" target="_blank" data-type="motion">
                     <img src="images/stu08.png" alt="" class="project__img" >
                     <div class="project__description">
-                        <h3>Stu01 Portfolio</h3>
+                        <h3>Stu08 Portfolio</h3>
                         <span>Promotion Design</span>
                     </div>
                 </a>
@@ -133,52 +133,92 @@
         </span>
     </button>
     <script>
-        const btnHome = document.querySelector('.home');
-        const sectionHome = document.querySelector('#home');
-        btnHome.addEventListener('click', function() {
-            sectionHome.scrollIntoView({behavior:"smooth", blcok:"center"});
-        })
-        const btnAbout = document.querySelector('.about');
-        const sectionAbout = document.querySelector('#about');
-        btnAbout.addEventListener('click', function() {
-            sectionAbout.scrollIntoView({behavior:"smooth", blcok:"center"});
-        })
-        const btnSkills = document.querySelector('.skills');
-        const sectionSkills = document.querySelector('#skills');
-        btnSkills.addEventListener('click', function() {
-            sectionSkills.scrollIntoView({behavior:"smooth", blcok:"center"});
-        })
-        const btnWorks = document.querySelector('.works');
-        const sectionWorks = document.querySelector('#works');
-        btnWorks.addEventListener('click', function() {
-            sectionWorks.scrollIntoView({behavior:"smooth", blcok:"center"});
-        })
-        const btnContact = document.querySelector('.contact');
-        const sectionContact = document.querySelector('#contact');
-        btnContact.addEventListener('click', function() {
-            sectionContact.scrollIntoView({behavior:"smooth", blcok:"center"});
-        })
-        const arrowUp = document.querySelector('.arrow-up')
-        arrowUp.addEventListener('click', function() {
-            sectionHome.scrollIntoView({behavior:"smooth", blcok:"center"});
-        })
-        document.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                arrowUp.classList.add('show');
-            } else {
-                arrowUp.classList.remove('show');
-            }
-        })
+
+//교수님이 해보신 버전
+const btnsMenu = document.querySelector('.btns__menu');
+
+btnsMenu.addEventListener('click', (e) => {
+    const target = e.target;
+    const link = target.dataset.link; // data-link 속성값을 가져옴
+
+    // link 값이 없으면 함수 종료
+    if (link == null) {
+        return;
+    }
+    const scrollTo = document.querySelector(link);
+    scrollTo.scrollIntoView({behavior:"smooth", block:"start"});
+
+    // 해당하는 섹션 선택 및 스크롤
+    const targetSection = document.querySelector(link);
+    if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+});
+
+//내가 한번 해본 버전들
+
+/* const btnsMenu = document.querySelector('.btns__menu');
+
+btnsMenu.addEventListener('click', (e) => {
+    const target = e.target;
+    const link = target.dataset.link; // data-link 속성값을 가져옴
+
+    // link 값이 없으면 함수 종료
+    if (link == null) {
+        return;
+    }
+
+    // 해당하는 섹션 선택 및 스크롤
+    const targetSection = document.querySelector(link);
+    if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+});
+
+// 화살표 클릭 시 홈 섹션으로 스크롤
+const arrowUp = document.querySelector('.arrow-up');
+const homeSection = document.querySelector('#home');
+arrowUp.addEventListener('click', function() {
+    homeSection.scrollIntoView({ behavior: "smooth", block: "center" });
+});
+ */
+
+        
 
         //project
         const workBtnContainer = document.querySelector('.work__categories');
         const projectContainer = document.querySelector('.work__projects');
         const projects = document.querySelectorAll('.project'); 
 
+
+        /* e는 매게변수 이벤트이다. 이 이벤트는 클릭이라는 이벤트가 발생했을 때 이 e 함수에 전달되는 변수 */
         workBtnContainer.addEventListener('click', (e) => {
-            const filter = e.target.dataset.filter || e.target.parentNode;
+            const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
             console.log(filter);
+            if(filter == null) {
+                return;
+            }
+
+            const active = document.querySelector('.category__btn.selected');
+            active.classList.remove('selected');
+            const target = e.target.nodeName === 'BUTTON' ? e.target : e.target.parentNode;
+            target.classList.add('selected');
+
+            projectContainer.classList.add('anim-out');
+            setTimeout(() => {
+                projects.forEach((project)=>{
+                    if(filter === '*' || filter === project.dataset.type) {
+                        project.classList.remove('invisible');
+                    } else {
+                        project.classList.add('invisible');
+                    }
+                })
+                projectContainer.classList.remove('anim-out');
+            }, 300)
         })
+
+        
+
     </script>
 </body>
 </html>
